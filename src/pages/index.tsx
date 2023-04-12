@@ -1,7 +1,7 @@
 /* eslint-disable react/no-children-prop */
 /* eslint-disable @next/next/no-img-element */
 import { SignInButton, useUser } from "@clerk/nextjs";
-import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+import { faCopy, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type NextPage } from "next";
 import { useRef, useState } from "react";
@@ -243,20 +243,37 @@ const Home: NextPage = () => {
                     <span className="text-[#ececf1]">{msg.content}</span>
                   ) : (
                     <Markdown
-                      className="w-full text-[#ececf1]"
+                      className="w-3/4 text-[#ececf1] sm:w-full"
                       components={{
                         code({ inline, className, children, ...props }) {
                           const match = /language-(\w+)/.exec(className || "");
 
+                          const code = String(children).replace(/\n$/, "");
+
                           return !inline && match ? (
-                            <SyntaxHighlighter
-                              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
-                              style={tomorrow as any}
-                              PreTag="div"
-                              language={match[1]}
-                              children={String(children).replace(/\n$/, "")}
-                              {...props}
-                            />
+                            <div>
+                              <div className="-mb-2 flex w-full justify-between rounded-t-lg bg-[#343541] p-2 text-xs">
+                                <p>{match[1]}</p>
+                                <div
+                                  className="flex cursor-pointer items-center gap-2"
+                                  onClick={async () => {
+                                    if (navigator)
+                                      await navigator.clipboard.writeText(code);
+                                  }}
+                                >
+                                  <FontAwesomeIcon icon={faCopy} />
+                                  <span>Copy Code</span>
+                                </div>
+                              </div>
+                              <SyntaxHighlighter
+                                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
+                                style={tomorrow as any}
+                                PreTag="div"
+                                language={match[1]}
+                                children={code}
+                                {...props}
+                              />
+                            </div>
                           ) : (
                             <code
                               className={className ? className : ""}
