@@ -85,7 +85,13 @@ const Sidebar = ({
         <div onClick={onDeleteAllSessions}>
           <MenuItem icon={faTrashCan} text="Clear converstations" />
         </div>
-        <MenuItem icon={faGithub} text="GitHub" />
+        <a
+          href="https://github.com/WilliamWelsh/chatgpt-clone"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <MenuItem icon={faGithub} text="GitHub" />
+        </a>
         <div className="flex cursor-pointer items-center gap-2 rounded-md px-4 py-3 hover:bg-gray-600">
           <FontAwesomeIcon icon={faArrowRightFromBracket} className="h-4 w-4" />
           <SignOutButton />
