@@ -243,7 +243,7 @@ const Home: NextPage = () => {
                     <span className="text-[#ececf1]">{msg.content}</span>
                   ) : (
                     <Markdown
-                      className="grow text-[#ececf1]"
+                      className="w-full text-[#ececf1]"
                       components={{
                         code({ inline, className, children, ...props }) {
                           const match = /language-(\w+)/.exec(className || "");
@@ -276,7 +276,7 @@ const Home: NextPage = () => {
             ))}
           </div>
         )}
-        <div className="mb-16 flex w-full flex-col items-center justify-center gap-2 px-4 pb-4 sm:relative sm:bottom-0 sm:mb-0">
+        <div className="mb-20 flex w-full flex-col items-center justify-center gap-2 px-4 pb-4 sm:relative sm:bottom-0 sm:mb-0">
           <div className="flex w-full items-center rounded-md bg-[#40414f] px-4 py-3 text-white outline-none drop-shadow-lg sm:w-2/3">
             <input
               ref={inputRef}
