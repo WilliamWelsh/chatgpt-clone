@@ -210,11 +210,11 @@ const Home: NextPage = () => {
             <p className="text-sm text-white">Default (GPT-3.5)</p>
           </div>
         )}
-        {/* {!sessionId && ( */}
-        {/*   <span className="text-2xl font-bold text-[#565869]"> */}
-        {/*     ChatGPT Clone */}
-        {/*   </span> */}
-        {/* )} */}
+        {!sessionId && (
+          <span className="text-2xl font-bold text-[#565869]">
+            ChatGPT Clone
+          </span>
+        )}
 
         {sessionId && (
           <div
