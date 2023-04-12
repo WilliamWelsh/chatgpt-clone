@@ -5,6 +5,7 @@ import { faCopy, faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type NextPage } from "next";
 import { useRef, useState } from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/cjs/styles/prism";
@@ -254,16 +255,12 @@ const Home: NextPage = () => {
                             <div>
                               <div className="-mb-2 flex w-full justify-between rounded-t-lg bg-[#343541] p-2 text-xs">
                                 <p>{match[1]}</p>
-                                <div
-                                  className="flex cursor-pointer items-center gap-2"
-                                  onClick={async () => {
-                                    if (navigator)
-                                      await navigator.clipboard.writeText(code);
-                                  }}
-                                >
-                                  <FontAwesomeIcon icon={faCopy} />
-                                  <span>Copy Code</span>
-                                </div>
+                                <CopyToClipboard text={code}>
+                                  <div className="flex cursor-pointer items-center gap-2">
+                                    <FontAwesomeIcon icon={faCopy} />
+                                    <span>Copy Code</span>
+                                  </div>
+                                </CopyToClipboard>
                               </div>
                               <SyntaxHighlighter
                                 // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any
