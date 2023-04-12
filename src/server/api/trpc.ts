@@ -8,22 +8,12 @@
  */
 
 /**
- * 1. CONTEXT
- *
- * This section defines the "contexts" that are available in the backend API.
- *
- * These allow you to access things when processing a request, like the database, the session, etc.
- */
-import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
-
-/**
  * This is the actual context you will use in your router. It will be used to process every request
  * that goes through your tRPC endpoint.
  *
  * @see https://trpc.io/docs/context
  */
-export const createTRPCContext = (opts: CreateNextContextOptions) => {
-  const { req } = opts;
+export const createTRPCContext = (req: NextRequest) => {
   const { userId } = getAuth(req);
 
   return { userId };
@@ -40,6 +30,7 @@ import { getAuth } from "@clerk/nextjs/server";
 import { TRPCError, initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import { type NextRequest } from "next/server";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
