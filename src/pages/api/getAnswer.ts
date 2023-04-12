@@ -42,7 +42,7 @@ export default async (req: NextApiRequest, _: NextApiResponse) => {
 
   const request: CreateChatCompletionRequest = {
     model: "gpt-3.5-turbo",
-    max_tokens: 512,
+    max_tokens: 1024,
     stream: true,
     messages: [
       {

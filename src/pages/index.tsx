@@ -297,7 +297,7 @@ const Home: NextPage = () => {
               className="flex-grow bg-transparent outline-none"
               placeholder="Send a message..."
               value={input}
-              maxLength={420}
+              maxLength={2048}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={async (e) => {
                 if (e.key === "Enter" && !isThinking) await onSubmit();
