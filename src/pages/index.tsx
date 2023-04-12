@@ -51,7 +51,7 @@ const Home: NextPage = () => {
 
   const msgsRef = useRef<HTMLDivElement>(null);
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   if (!user)
     return (
@@ -292,15 +292,16 @@ const Home: NextPage = () => {
         )}
         <div className="mb-20 flex w-full flex-col items-center justify-center gap-2 px-4 pb-4 sm:relative sm:bottom-0 sm:mb-0">
           <div className="flex w-full items-center rounded-md bg-[#40414f] px-4 py-3 text-white outline-none drop-shadow-lg sm:w-2/3">
-            <input
+            <textarea
               ref={inputRef}
-              className="flex-grow bg-transparent outline-none"
+              className="max-h-[25px] flex-grow resize-none overflow-y-auto bg-transparent outline-none"
               placeholder="Send a message..."
               value={input}
               maxLength={2048}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={async (e) => {
-                if (e.key === "Enter" && !isThinking) await onSubmit();
+                if (e.key === "Enter" && !e.shiftKey && !isThinking)
+                  await onSubmit();
               }}
             />
             <FontAwesomeIcon
