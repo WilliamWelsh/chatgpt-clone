@@ -215,17 +215,17 @@ const Home: NextPage = () => {
         {sessionId && (
           <div
             ref={msgsRef}
-            className="flex w-full grow flex-col overflow-y-auto overflow-x-hidden"
+            className="mb-4 flex w-full grow flex-col overflow-y-auto overflow-x-hidden"
           >
             {messages.map((msg) => (
               <div
                 key={`${msg.id}${msg.content ?? ""}`}
                 className={cn(
-                  "flex justify-center py-4",
+                  "flex justify-center py-6",
                   msg.role == "bot" && "border-b border-[#2a2a31] bg-[#444654]"
                 )}
               >
-                <div className="flex w-2/3 basis-2/3 gap-4">
+                <div className="flex w-full basis-full gap-4 px-4 sm:w-2/3 sm:basis-2/3">
                   <img
                     src={
                       msg.role === "user"
