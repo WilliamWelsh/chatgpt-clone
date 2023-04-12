@@ -69,7 +69,7 @@ const Home: NextPage = () => {
   };
 
   const onSubmit = async () => {
-    if (!input) return;
+    if (input == "") return;
 
     setIsThinking(true);
 
@@ -286,7 +286,13 @@ const Home: NextPage = () => {
             />
             <FontAwesomeIcon
               icon={faPaperPlane}
-              className="h-4 w-4 cursor-pointer text-[#9a9ba0]"
+              onClick={onSubmit}
+              className={cn(
+                "h-4 w-4 cursor-pointer text-[#9a9ba0]",
+                input === ""
+                  ? "cursor-not-allowed opacity-50"
+                  : "cursor-pointer"
+              )}
             />
           </div>
           <span className="text-center text-sm text-[#9a9ba0]">
