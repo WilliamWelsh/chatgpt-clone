@@ -50,6 +50,8 @@ const Home: NextPage = () => {
 
   const msgsRef = useRef<HTMLDivElement>(null);
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   if (!user)
     return (
       <div className="flex h-screen flex-col items-center justify-center gap-3 text-white">
@@ -72,6 +74,8 @@ const Home: NextPage = () => {
     if (input == "") return;
 
     setIsThinking(true);
+
+    if (inputRef.current) inputRef.current.blur();
 
     const question = input;
 
@@ -192,7 +196,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <main className="flex h-screen">
+    <main className="fixed flex h-screen w-screen">
       <Sidebar
         sessions={sessions.data}
         onSessionSelected={onSessionSelected}
@@ -201,16 +205,16 @@ const Home: NextPage = () => {
       />
       <div className="flex h-screen w-full flex-col items-center justify-between bg-[#343541] pt-4">
         {!sessionId && (
-          <div className="w-1/3 rounded-md border border-gray-600 px-4 py-3">
+          <div className="w-2/3 rounded-md border border-gray-600 px-4 py-3 sm:mx-0 sm:w-1/3">
             <p className="text-xs text-[#9a9ba0]">Model</p>
             <p className="text-sm text-white">Default (GPT-3.5)</p>
           </div>
         )}
-        {!sessionId && (
-          <span className="text-2xl font-bold text-[#565869]">
-            ChatGPT Clone
-          </span>
-        )}
+        {/* {!sessionId && ( */}
+        {/*   <span className="text-2xl font-bold text-[#565869]"> */}
+        {/*     ChatGPT Clone */}
+        {/*   </span> */}
+        {/* )} */}
 
         {sessionId && (
           <div
@@ -272,9 +276,10 @@ const Home: NextPage = () => {
             ))}
           </div>
         )}
-        <div className="flex w-full flex-col items-center justify-center gap-2 px-4 pb-4">
+        <div className="mb-16 flex w-full flex-col items-center justify-center gap-2 px-4 pb-4 sm:relative sm:bottom-0 sm:mb-0">
           <div className="flex w-full items-center rounded-md bg-[#40414f] px-4 py-3 text-white outline-none drop-shadow-lg sm:w-2/3">
             <input
+              ref={inputRef}
               className="flex-grow bg-transparent outline-none"
               placeholder="Send a message..."
               value={input}

@@ -4,5 +4,10 @@
 
 html {
   scrollbar-color: #10a37f transparent;
-  @apply overflow-hidden bg-[#343541];
+  @apply bg-[#343541];
+}
+
+html,
+body {
+  @apply overflow-hidden;
 }
