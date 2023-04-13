@@ -246,6 +246,15 @@ const Home: NextPage = () => {
                     <Markdown
                       className="w-3/4 text-[#ececf1] sm:w-full"
                       components={{
+                        ol: ({ children }) => (
+                          <ol className="ml-4 list-decimal">{children}</ol>
+                        ),
+                        ul: ({ children }) => (
+                          <ul className="ml-4 list-disc">{children}</ul>
+                        ),
+                        li: ({ children }) => (
+                          <li className="my-1">{children}</li>
+                        ),
                         code({ inline, className, children, ...props }) {
                           const match = /language-(\w+)/.exec(className || "");
 
@@ -253,7 +262,7 @@ const Home: NextPage = () => {
 
                           return !inline && match ? (
                             <div>
-                              <div className="-mb-2 flex w-full justify-between rounded-t-lg bg-[#343541] p-2 text-xs">
+                              <div className="-mb-2 flex w-full justify-between whitespace-pre-wrap rounded-t-lg bg-[#343541] p-2 text-xs">
                                 <p>{match[1]}</p>
                                 <CopyToClipboard text={code}>
                                   <div className="flex cursor-pointer items-center gap-2">
