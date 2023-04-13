@@ -240,11 +240,9 @@ const Home: NextPage = () => {
                     alt="profile picture"
                     className="h-8 w-8 rounded-sm"
                   />
-                  {msg.role === "user" ? (
-                    <span className="text-[#ececf1]">{msg.content}</span>
-                  ) : (
+                  {
                     <Markdown
-                      className="w-3/4 text-[#ececf1] sm:w-full"
+                      className="w-3/4 overflow-x-auto text-[#ececf1] sm:w-3/4"
                       components={{
                         ol: ({ children }) => (
                           <ol className="ml-4 list-decimal">{children}</ol>
@@ -293,7 +291,7 @@ const Home: NextPage = () => {
                     >
                       {msg.content ?? ""}
                     </Markdown>
-                  )}
+                  }
                 </div>
               </div>
             ))}
